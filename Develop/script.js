@@ -13,10 +13,10 @@ function writePassword() {
 }
 
 // // If someone can explain to me why this has to be here to be considered defined but the other functions don't....
-var passwordGen = function (passwordIncludes, length) {
+var passwordGen = function () {
+  var response = [];
   // Run the loop for the desired length selected by the user
   for (i = 0; i < length; i++) {
-    if (passwordArray.length < length) {
     // Get random index from array passwordIncludes
     var index = Math.floor(Math.random() * passwordIncludes.length);
     // Get string from array randomly chosen above
@@ -24,12 +24,13 @@ var passwordGen = function (passwordIncludes, length) {
     // Get random index from the randomly selected array 
     var randomValue = Math.floor(Math.random() * option.split("").length);
     // Add the random index from the selected array to the password
-    passwordArray.push(option.split("")[randomValue]);
-    console.log(option.split("")[randomValue]);
-    console.log(passwordArray);
+    response.push(option.split("")[randomValue]);
     // Repeat
   }
-  }
+  console.log(response);
+  var response = response.toString();
+  console.log(response);
+  return response;
 }
 
 // Generate Password Function
@@ -50,7 +51,7 @@ var generatePassword = function() {
   validationLoop();
   console.log(passwordIncludes);
   passwordGen();
-  console.log(passwordArray);
+
   }
 
 // Validation Arrays
