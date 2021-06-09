@@ -13,16 +13,22 @@ function writePassword() {
 }
 
 // // If someone can explain to me why this has to be here to be considered defined but the other functions don't....
-var passwordGen = function (passwordIncludes) {
+var passwordGen = function (passwordIncludes, length) {
   // Run the loop for the desired length selected by the user
   for (i = 0; i < length; i++) {
+    if (passwordArray.length < length) {
     // Get random index from array passwordIncludes
-    var index = Math.floor(Math.random() * length);
+    var index = Math.floor(Math.random() * passwordIncludes.length);
+    // Get string from array randomly chosen above
     var option = passwordIncludes[index];
-    console.log(index, option);
     // Get random index from the randomly selected array 
-    var index = Math.floor(Math.random() * option.length);
-    console.log(index);
+    var randomValue = Math.floor(Math.random() * option.split("").length);
+    // Add the random index from the selected array to the password
+    passwordArray.push(option.split("")[randomValue]);
+    console.log(option.split("")[randomValue]);
+    console.log(passwordArray);
+    // Repeat
+  }
   }
 }
 
@@ -44,6 +50,7 @@ var generatePassword = function() {
   validationLoop();
   console.log(passwordIncludes);
   passwordGen();
+  console.log(passwordArray);
   }
 
 // Validation Arrays
@@ -52,7 +59,7 @@ var validationNeg = ["n", "no"];
 
 var valid = false;
 var userInput = "";
-var length = "";
+var length = 0;
 var passwordIncludes = [];
 
 // User prompts
@@ -60,10 +67,11 @@ var Prompt = "";
 var Prompt2 = "";
 
 // Password Construction Arrays
-var lowercase = ["abcdefghijklmnopqrstuvwxyz"];
-var UPPERCASE = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
-var Numerical = ["1234567890"];
-var Special = ["!@#$%^&*()-+_=,./?~"];
+var lowercase = "abcdefghijklmnopqrstuvwxyz";
+var UPPERCASE = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var Numerical = "1234567890";
+var Special = "!@#$%^&*()-+_=,./?~";
+var passwordArray = [];
 
 // (Length prompt) Reusable validation loop for user input
 var lengthValidationLoop = function (userInput) {
@@ -73,7 +81,8 @@ var lengthValidationLoop = function (userInput) {
   
    if (userInput >= 8 && userInput <= 128) {
      valid = true;
-     length = userInput;
+     // Changes the string user response into an integer
+     length = parseInt(userInput, 10);
      break;
    } 
  }
