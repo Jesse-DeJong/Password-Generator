@@ -1,6 +1,9 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
+
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
@@ -9,8 +12,39 @@ function writePassword() {
   passwordText.value = password;
 }
 
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+// // If someone can explain to me why this has to be here to be considered defined but the other functions don't....
+var passwordGen = function (passwordIncludes) {
+  // Run the loop for the desired length selected by the user
+  for (i = 0; i < length; i++) {
+    // Get random index from array passwordIncludes
+    var index = Math.floor(Math.random() * length);
+    var option = passwordIncludes[index];
+    console.log(index, option);
+    // Get random index from the randomly selected array 
+    var index = Math.floor(Math.random() * option.length);
+    console.log(index);
+  }
+}
+
+// Generate Password Function
+var generatePassword = function() {
+  // Collect user input for what to include in the password
+  lengthValidationLoop();
+  Prompt = "lowercase";
+  Prompt2 = lowercase;
+  validationLoop();
+  Prompt = "UPPERCASE";
+  Prompt2 = UPPERCASE;
+  validationLoop();
+  Prompt = "Numerical";
+  Prompt2 = Numerical;
+  validationLoop();
+  Prompt = "Special";
+  Prompt2 = Special;
+  validationLoop();
+  console.log(passwordIncludes);
+  passwordGen();
+  }
 
 // Validation Arrays
 var validation = ["y", "yes"];
@@ -30,29 +64,6 @@ var lowercase = ["abcdefghijklmnopqrstuvwxyz"];
 var UPPERCASE = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
 var Numerical = ["1234567890"];
 var Special = ["!@#$%^&*()-+_=,./?~"];
-
-// Generate Password Function
-function generatePassword() {
-  // Collect user input for what to include in the password
-  lengthValidationLoop();
-  Prompt = "lowercase";
-  Prompt2 = lowercase;
-  validationLoop();
-  Prompt = "UPPERCASE";
-  Prompt2 = UPPERCASE;
-  validationLoop();
-  Prompt = "Numerical";
-  Prompt2 = Numerical;
-  validationLoop();
-  Prompt = "Special";
-  Prompt2 = Special;
-  validationLoop();
-  console.log(passwordIncludes);
-  passwordGen();
-
-  // Generate the password from the user selected criteria
-
-}
 
 // (Length prompt) Reusable validation loop for user input
 var lengthValidationLoop = function (userInput) {
@@ -93,17 +104,5 @@ var validationLoop = function (userInput, Promt) {
   userInput = "";
 }
 
-var passwordGen = function (passwordIncludes) {
-  // Run the loop for the desired length selected by the user
-  for (i = 0; i < length; i++) {
-    // Get random index from array passwordIncludes
-    var index = Math.floor(Math.random() * length);
-    var option = passwordIncludes[index];
-    console.log(index, option);
-    // Get random index from the randomly selected array 
-    var index = Math.floor(Math.random() * option.length);
-    console.log(index);
-  }
-};
 
 };
