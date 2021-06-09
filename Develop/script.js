@@ -6,7 +6,10 @@ generateBtn.addEventListener("click", writePassword);
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
+  // var password = generatePassword(); // Not sure why this wasn't working, substituted my own
+  generatePassword();
+  // Creates a string out of the loops returned array
+  var password = response.join("");
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
@@ -14,7 +17,7 @@ function writePassword() {
 
 // // If someone can explain to me why this has to be here to be considered defined but the other functions don't....
 var passwordGen = function () {
-  var response = [];
+
   // Run the loop for the desired length selected by the user
   for (i = 0; i < length; i++) {
     // Get random index from array passwordIncludes
@@ -27,11 +30,8 @@ var passwordGen = function () {
     response.push(option.split("")[randomValue]);
     // Repeat
   }
-  console.log(response);
-  var response = response.toString();
-  console.log(response);
   return response;
-}
+};
 
 // Generate Password Function
 var generatePassword = function() {
@@ -49,10 +49,12 @@ var generatePassword = function() {
   Prompt = "Special";
   Prompt2 = Special;
   validationLoop();
-  console.log(passwordIncludes);
+  // Run the password loop based on selected user input
   passwordGen();
+  };
 
-  }
+// Global Response Array
+var response = [];
 
 // Validation Arrays
 var validation = ["y", "yes"];
@@ -67,12 +69,11 @@ var passwordIncludes = [];
 var Prompt = "";
 var Prompt2 = "";
 
-// Password Construction Arrays
+// Password Construction Strings
 var lowercase = "abcdefghijklmnopqrstuvwxyz";
 var UPPERCASE = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var Numerical = "1234567890";
 var Special = "!@#$%^&*()-+_=,./?~";
-var passwordArray = [];
 
 // (Length prompt) Reusable validation loop for user input
 var lengthValidationLoop = function (userInput) {
@@ -82,7 +83,7 @@ var lengthValidationLoop = function (userInput) {
   
    if (userInput >= 8 && userInput <= 128) {
      valid = true;
-     // Changes the string user response into an integer
+     // Changes the string from user response into an integer
      length = parseInt(userInput, 10);
      break;
    } 
